@@ -64,3 +64,185 @@ Secure File Transfer — SCP over SSH used for all backup transfers between node
  Automate entire setup using docker-compose
  
  Add intrusion detection alerts between nodes
+
+---------------------------------------------------------------------------------------------------------
+<img width="880" height="348" alt="1" src="https://github.com/user-attachments/assets/6becc929-d5d3-43c9-aabd-fcdd24196c13" />
+
+**Built 3 isolated server nodes using Docker**
+
+Instead of buying expensive hardware, I simulated 
+an entire server infrastructure on my laptop using 
+Docker containers.
+
+Each node runs Ubuntu 22.04 and acts as an 
+independent server — just like real-world deployments.
+
+Node 1 → Relay Server
+
+Node 2 → Chat Server  
+
+Node 3 → Backup Server
+
+This is containerization in action — the same 
+technology used by Netflix, Google, and Amazon 
+to run their infrastructure.
+
+<img width="410" height="177" alt="2" src="https://github.com/user-attachments/assets/81f294c8-deac-4b7f-b208-eeca844f120b" />
+
+**Created a private isolated network**
+
+Real covert networks don't use the public internet 
+for internal communication.
+
+I created "shadownet" — a private Docker bridge 
+network that isolates all 3 nodes from the outside 
+world.
+
+Think of it like building a private LAN inside 
+your laptop. All nodes can talk to each other, 
+but nobody outside can see them.
+
+This is network segmentation — a core principle 
+in enterprise cybersecurity.
+
+<img width="860" height="495" alt="4" src="https://github.com/user-attachments/assets/54f0e4d8-0a76-436b-b33a-69af1a8b21c8" />
+
+**Encrypted all traffic using WireGuard VPN**
+
+This is where it gets serious.
+
+I set up WireGuard — a modern, blazing-fast VPN 
+protocol used by cybersecurity professionals worldwide.
+
+Every single packet traveling between nodes is 
+now fully encrypted using military-grade 
+cryptography (ChaCha20 + Poly1305).
+
+Even if someone intercepts the traffic, they 
+cannot read it without the private keys.
+
+The keys are hidden for security — as they 
+should be in any real deployment.
+
+<img width="634" height="362" alt="5" src="https://github.com/user-attachments/assets/584bc32e-6d05-4aad-b115-53c6f19a48a6" />
+
+**Verified the encrypted tunnel
+**
+A network is useless if it doesn't work reliably.
+
+I tested the WireGuard tunnel by sending ICMP 
+ping packets from Node 2 to Node 1 through 
+the encrypted tunnel.
+
+Result:
+-4 packets sent
+
+-4 packets received  
+
+-0% packet loss
+
+-Average latency: 2.1ms
+
+The tunnel is rock solid. All traffic is flowing 
+securely between nodes — completely encrypted 
+end to end.
+
+<img width="1919" height="384" alt="6" src="https://github.com/user-attachments/assets/cad2dd06-7a8c-44cb-8efd-6f2c3a2c3f9b" />
+
+**Live encrypted communication between nodes**
+
+This is the moment everything came together.
+
+Using Netcat (a networking tool used by security 
+researchers worldwide), I established a real-time 
+encrypted chat channel between Node 1 and Node 2.
+
+Left window → Node 1 (Relay) sending messages
+
+Right window → Node 2 (Chat) receiving messages
+
+Every message travels through the WireGuard 
+encrypted tunnel — completely private and 
+unreadable to any outside observer.
+
+This is the foundation of how secure messaging 
+apps like Signal work at the network level.
+
+<img width="962" height="1017" alt="13" src="https://github.com/user-attachments/assets/cea45a01-bdcf-4cb9-b10f-43f4645a3eb1" />
+
+** Automated backup of entire infrastructure**
+
+**What happens if your servers get wiped?**
+
+I wrote a bash script that automatically:
+
+-Collects all WireGuard keys and configs
+
+-Bundles them into a compressed archive
+
+-Securely transfers everything to the backup server (Node 3) using SCP
+
+**Both node backups are now safely stored 
+on the isolated backup server:**
+
+node1_backup.tar.gz — 489 bytes
+
+node2_backup.tar.gz — 471 bytes
+
+This is infrastructure-as-code and disaster 
+recovery planning in practice.
+
+<img width="905" height="383" alt="15" src="https://github.com/user-attachments/assets/4eae3f15-3720-4bf3-82bf-fc020ea2c283" />
+
+**Simulated a full network takedown**
+
+The real test of any infrastructure is — 
+what happens when everything goes down?
+
+I simulated a complete network seizure by 
+forcefully destroying Node 1 and Node 2:
+
+docker rm -f node1
+
+docker rm -f node2
+
+All WireGuard configs, encryption keys, and 
+network settings — completely wiped.
+
+Only Node 3 (backup server) survived.
+
+This is exactly what happens in real-world 
+scenarios — server failures, ransomware attacks, 
+or infrastructure seizures. 
+
+The question is: can you recover? 
+
+<img width="961" height="1021" alt="18" src="https://github.com/user-attachments/assets/7bb1e906-e8c7-40dc-b43c-093d66d12824" />
+
+**Full restore — back online in seconds**
+
+From complete destruction to fully operational 
+in under 2 minutes — purely from backup!
+
+The restore script automatically:
+-Pushed configs back to new Node 1 & Node 2
+
+-Restored all WireGuard encryption keys
+
+-Re-established the encrypted tunnel
+
+-Brought the chat server back online
+
+As you can see — both nodes are chatting again 
+through the encrypted tunnel, completely restored!
+
+This is why backups and disaster recovery 
+planning are not optional in cybersecurity — 
+they are essential.
+
+Tools used: Docker • WireGuard • Linux • 
+Bash Scripting • SCP • OpenSSH
+
+#cybersecurity #docker #wireguard #linux 
+#infosec #networking #bash #devops 
+#ethicalhacking #learnincybersecurity
