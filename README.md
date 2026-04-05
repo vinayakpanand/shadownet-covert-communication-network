@@ -13,23 +13,8 @@ This is a 100% educational project built on local Docker containers. No real net
 
 The network consists of three nodes running inside isolated Docker containers, all connected through a private bridge network called shadownet. Node 1 and Node 2 communicate through an encrypted WireGuard tunnel, while Node 3 sits separately as the backup server.
 
-┌─────────────────────────────────────────────────────┐
-│              Docker Network (shadownet)             │
-│                                                     │
-│   ┌─────────────┐    🔐 WireGuard    ┌────────────┐ │
-│   │   NODE 1    │◄──────Tunnel──────►│   NODE 2    │ │
-│   │relay-node   │                    │  chat-node  │ │
-│   │ 10.0.0.1    │                    │  10.0.0.2   │ │
-│   └─────────────┘                    └─────────────┘ │
-│          │                                 │         │
-│          └──────────────┬──────────────────┘         │
-│                         │                            │
-│                ┌────────▼────────┐                   │
-│                │     NODE 3      │                   │
-│                │  backup-node    │                   │
-│                │   10.0.0.3      │                   │
-│                └─────────────────┘                   │
-└───────────────────────────────────────────────────────┘
+<img width="647" height="508" alt="image" src="https://github.com/user-attachments/assets/ca87aaa0-f9cb-49e1-b1cf-a757cbff7577" />
+
 
 **Node Breakdown**
 
